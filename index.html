@@ -1237,7 +1237,7 @@ const METALS = {
   acier:   { label: 'Acier',         densite: 7.85, prix_kg: 1.20 },
   alu:     { label: 'Aluminium',     densite: 2.70, prix_kg: 5.00 },
   inox:    { label: 'Inox',          densite: 7.95, prix_kg: 4.00 },
-  perfore: { label: 'Tôle perforée', densite: 8.0, prix_kg: 3.50 },
+  perfore: { label: 'Tôle perforée', densite: 4.3333, prix_kg: 3.50, note: 'calée sur ta tôle réelle (trous déduits)' },
 };
 
 function metalCalc() {
@@ -1256,8 +1256,9 @@ function metalCalc() {
     poids.toLocaleString('fr-FR', { minimumFractionDigits: 3, maximumFractionDigits: 3 }) + ' kg';
   document.getElementById('m-prix').textContent =
     prix.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
-  document.getElementById('m-densite-info').textContent =
-    metal.label + ' — ' + String(metal.densite).replace('.', ',') + ' g/cm³';
+  document.getElementById('m-densite-info').textContent = metal.note
+    ? metal.label + ' — ' + metal.note
+    : metal.label + ' — ' + String(metal.densite).replace('.', ',') + ' g/cm³';
   document.getElementById('m-prix-info').textContent =
     metal.prix_kg.toFixed(2).replace('.', ',') + ' €/kg';
 }
